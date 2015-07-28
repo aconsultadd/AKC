@@ -26,6 +26,8 @@ class PinsController < ApplicationController
     respond_with(@pin)
   end
 
+
+
   def update
     @pin.update_attributes(params[:pin])
     respond_with(@pin)
@@ -36,8 +38,15 @@ class PinsController < ApplicationController
     respond_with(@pin)
   end
 
+ 
+
   private
     def set_pin
       @pin = Pin.find(params[:id])
     end
-end
+
+    def pin_params
+      params.require(:pin).permit(:description, :image)
+    end 
+  end
+
